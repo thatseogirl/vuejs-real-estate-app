@@ -1,30 +1,37 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div class="container">
+    <NavComponent />
+    <router-view />
+    <FooterComponent />
+  </div>
 </template>
 
+<script>
+import NavComponent from "./components/NavComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
+export default {
+  name: "App",
+  components: {
+    NavComponent,
+    FooterComponent,
+  },
+};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url(./assets/styles/variables.css);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-
-nav {
-  padding: 30px;
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.container {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
 }
 </style>
