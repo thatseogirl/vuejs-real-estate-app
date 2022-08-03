@@ -19,13 +19,13 @@
 
 <script>
 export default {
-  name: "FooterComponent",
+  name: "MobileNav",
 };
 </script>
 
 <style scoped>
 footer {
-  visibility: hidden;
+  display: none;
 }
 .navbar {
   overflow: hidden;
@@ -48,9 +48,9 @@ ul .nav_active_link img {
   background-color: var(--primary-element-color);
   filter: saturate(4);
 }
-@media (max-width: 768px) {
+@media (max-width: 840px) {
   footer {
-    visibility: visible;
+    display: flex;
   }
 }
 </style>

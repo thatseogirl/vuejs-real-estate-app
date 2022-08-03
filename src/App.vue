@@ -1,19 +1,19 @@
 <template>
-  <div class="container">
+  <div id="app">
     <NavComponent />
     <router-view />
-    <FooterComponent />
+    <MobileNav />
   </div>
 </template>
 
 <script>
 import NavComponent from "./components/NavComponent.vue";
-import FooterComponent from "./components/FooterComponent.vue";
+import MobileNav from "./components/MobileNav.vue";
 export default {
   name: "App",
   components: {
     NavComponent,
-    FooterComponent,
+    MobileNav,
   },
 };
 </script>
@@ -26,10 +26,11 @@ export default {
 }
 body {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
+  background-color: var(--secondary-background);
 }
-.container {
+#app {
   width: 100%;
   max-width: 100%;
   height: 100vh;

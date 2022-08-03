@@ -70,7 +70,7 @@ img {
   height: 6vh;
 }
 .header {
-  visibility: hidden;
+  display: none;
 }
 a {
   text-decoration: none;
@@ -81,14 +81,13 @@ a {
 }
 @media (max-width: 768px) {
   .header {
-    visibility: visible;
     display: flex;
     justify-content: center;
     align-items: center;
     font: bold 2em var(--secondary_font);
   }
   main {
-    padding: 2em 0 0;
+    padding: 4em 0 0;
   }
   img {
     width: 23%;

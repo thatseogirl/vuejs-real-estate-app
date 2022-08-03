@@ -33,7 +33,7 @@ div {
 nav {
   overflow: hidden;
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   width: 75%;
   max-width: 100%;
   margin: auto;
@@ -41,25 +41,33 @@ nav {
 
 ul .nav_active_link {
   color: var(--primary-text-color);
+  font-weight: bold;
+  font-size: 18px;
 }
 
 ul {
   display: flex;
   gap: 3rem;
+  margin-top: 0.5em;
+  font-family: var(--secondary_font);
 }
-
 .nav_link {
+  font-family: var(--secondary_font);
+  font-weight: medium;
+  font-size: 18px;
   text-decoration: none;
   color: var(--secondary-teritary-element-color);
+}
+
+li {
   list-style-type: none;
 }
 img {
-  width: 10vw;
   height: 6vh;
 }
-@media (max-width: 768px) {
+@media (max-width: 840px) {
   div {
-    visibility: hidden;
+    display: none;
   }
 }
 </style>
