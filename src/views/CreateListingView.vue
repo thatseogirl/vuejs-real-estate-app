@@ -262,9 +262,9 @@ export default {
 .listing_container {
   width: 80%;
   max-width: 100%;
-  /* height: 1400px; */
   margin: auto;
   padding: 7em 2.5em;
+  overflow: scroll;
 }
 h3 {
   font-family: var(--secondary-font);
@@ -412,10 +412,13 @@ textarea {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   section {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+  .listing_container {
+    min-height: 1650px;
   }
 }
 </style>

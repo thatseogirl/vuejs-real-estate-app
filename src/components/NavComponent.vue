@@ -25,7 +25,6 @@ div {
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 200;
   background-color: var(--primary-background);
   padding: 0.75em 0;
 }

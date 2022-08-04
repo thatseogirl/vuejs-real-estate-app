@@ -119,6 +119,7 @@ export default {
 .house_wrapper {
   width: 75%;
   max-width: 100%;
+  height: 130px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -126,8 +127,8 @@ export default {
   border-radius: 10px;
 }
 .house {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   border-radius: 10px;
 }
 .image {
@@ -137,22 +138,24 @@ export default {
 }
 .wrapper_flex_item {
   display: flex;
-  gap: 1.5rem;
+  gap: 1em;
   padding: 1em;
 }
-
 .price_tag {
   display: flex;
-  margin-top: 1.5em;
+  margin-top: 0.25em;
 }
 .price_tag p {
-  font-size: 14px;
-  font-weight: 600;
+  font-family: var(--primary-font);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--secondary-element-color);
 }
 .location {
-  font-size: 18px;
-  font-weight: 400;
-  margin-top: 0.5em;
+  font-size: 14px;
+  font-family: var(--primary-font);
+  margin-top: 0.25em;
+  color: var(--secondary-teritary-element-color);
 }
 .inline {
   display: flex;
@@ -169,7 +172,7 @@ h3 {
 }
 .details_link {
   font-family: var(--secondary-font);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   color: var(--primary-text-color);
   text-decoration: none;
@@ -189,10 +192,9 @@ aside {
   }
   .wrapper {
     padding: 0.75em 1em;
-    /* min-height: 1900px; */
   }
   .details_link {
-    font-size: 14px;
+    font-size: 10px;
   }
   .location,
   .price_tag p {

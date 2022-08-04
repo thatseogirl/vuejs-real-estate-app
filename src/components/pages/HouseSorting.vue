@@ -40,8 +40,7 @@ export default {
 <style scoped>
 .btn_price {
   background-color: var(--primary-element-color);
-  position: relative;
-  z-index: 1;
+  /* position: relative; */
   left: 20px;
   border-radius: 10px 0px 0px 10px;
 }
@@ -56,14 +55,8 @@ export default {
 @media (max-width: 840px) {
   .btn_price,
   .btn_size {
-    position: relative;
     right: 0;
     left: 0;
-    width: 50%;
-  }
-  .btn_price {
-    z-index: 1;
-    position: relative;
     width: 50%;
   }
 }

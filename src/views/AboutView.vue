@@ -79,7 +79,7 @@ a {
 .dtt_link {
   font-size: 1em;
 }
-@media (max-width: 768px) {
+@media (max-width: 840px) {
   .header {
     display: flex;
     justify-content: center;
@@ -91,7 +91,7 @@ a {
   }
   img {
     width: 23%;
-    height: 3vh;
+    /* height: 3vh; */
   }
   .about_text_1 {
     font-size: 1.75vh;

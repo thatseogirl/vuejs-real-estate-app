@@ -1,24 +1,35 @@
 <template>
-  <transition name="modal-animation">
-    <div v-show="modalActive" class="modal-overlay">
-      <transition name="modal-animation-inner">
-        <div class="modal" v-show="modalActive">
-          <section class="modal">
-            <h4>Delete Listing</h4>
-            <p>Are you sure you want to delete this Listing?</p>
-            <p>This action cannot be undone</p>
-          </section>
-          <slot />
+  <div v-show="modalActive" class="modal-overlay">
+    <div class="modal" v-show="modalActive">
+      <section>
+        <h4>Delete Listing</h4>
+        <p>Are you sure you want to delete this Listing?</p>
+        <p>This action cannot be undone</p>
+        <div class="flex_button">
+          <ButtonItem
+            class="button_item"
+            style="background-color: var(--primary-element-color)"
+            text="Yes, Delete"
+          />
+          <ButtonItem
+            class="button_item"
+            text="Go back"
+            style="background-color: var(--primary-text-color)"
+          />
         </div>
-      </transition>
+      </section>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
+import ButtonItem from "./ButtonItem.vue";
 export default {
   name: "DeleteModal",
   props: ["modalActive"],
+  components: {
+    ButtonItem,
+  },
 };
 </script>
 
@@ -31,16 +42,25 @@ export default {
   right: 0;
   display: flex;
   justify-content: center;
-  background-color: #000000da;
+  background-color: var(--secondary-element-color);
+  opacity: 0.8;
 }
-
 .modal {
   text-align: center;
-  background-color: white;
+  background-color: var(--primary-background);
   height: 300px;
   width: 500px;
-  margin-top: 10%;
-  /* padding: 60px 0; */
+  margin-top: 20%;
+  padding: 60px 0;
   border-radius: 20px;
+}
+.flex_button {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  padding: 0 3em;
+}
+.button_item {
+  text-transform: uppercase;
 }
 </style>
