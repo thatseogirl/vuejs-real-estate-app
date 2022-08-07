@@ -8,27 +8,31 @@
         <div class="flex_button">
           <ButtonItem
             class="button_item"
+            @click="deleteListing(houseId)"
             style="background-color: var(--primary-element-color)"
             text="Yes, Delete"
           />
-          <ButtonItem
-            class="button_item"
-            text="Go back"
-            style="background-color: var(--primary-text-color)"
-          />
         </div>
       </section>
+      <slot />
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import ButtonItem from "./ButtonItem.vue";
 export default {
   name: "DeleteModal",
-  props: ["modalActive"],
+  props: {
+    houseId: Number,
+    modalActive: Boolean,
+  },
   components: {
     ButtonItem,
+  },
+  methods: {
+    ...mapActions(["fetchHouses", "deleteListing"]),
   },
 };
 </script>
@@ -50,7 +54,7 @@ export default {
   background-color: var(--primary-background);
   height: 300px;
   width: 500px;
-  margin-top: 20%;
+  margin-top: 15%;
   padding: 60px 0;
   border-radius: 20px;
 }
@@ -62,5 +66,7 @@ export default {
 }
 .button_item {
   text-transform: uppercase;
+  padding: 0.75em;
+  margin-bottom: 0.5em;
 }
 </style>

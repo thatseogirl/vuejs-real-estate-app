@@ -41,65 +41,26 @@
           </div>
         </div>
       </div>
-
-      <section>
-        <div>
-          <div class="inline" v-if="this.houses.madeByMe === true">
-            <router-link to="/">
-              <img
-                @click="editHouse"
-                :src="require('@/assets/images/edit_red.png')"
-                class="image"
-              />
-            </router-link>
-            <img
-              :src="require('@/assets/images/delete_black.png')"
-              class="image"
-              @click="toggleModal"
-            />
-          </div>
-
-          <DeleteModal :modalActive="modalActive">
-            <div>
-              <ButtonItem
-                text="Yes, Delete"
-                @click="deleteListing(houses.id)"
-              />
-              <ButtonItem text="No, go back" @click="toggleModal" />
-            </div>
-          </DeleteModal>
-        </div>
-      </section>
+      <div style="padding: 1em; margin: 1em" v-if="houses.madeByMe === true">
+        <EditDeleteComponent :houseId="houses.id" />
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import DeleteModal from "@/components/DeleteModal.vue";
-import ButtonItem from "@/components/ButtonItem.vue";
-import { ref } from "vue";
+import EditDeleteComponent from "./EditDeleteComponent.vue";
 export default {
   name: "HouseOverview",
   props: {
     houses: Object,
   },
   components: {
-    DeleteModal,
-    ButtonItem,
-  },
-  setup() {
-    const modalActive = ref(false);
-    const toggleModal = () => {
-      modalActive.value = !modalActive.value;
-    };
-    return { modalActive, toggleModal };
+    EditDeleteComponent,
   },
   methods: {
     ...mapActions(["deleteListing"]),
-    madeByMe() {
-      console.log(this.houses.madeByMe);
-    },
     formatPrice(value) {
       let val = (value / 1).toFixed(3).replace(".", ".");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -112,9 +73,6 @@ export default {
 .wrapper {
   padding: 0.5em 0.75em;
   font-family: var(--primary-font);
-}
-.modal {
-  display: none;
 }
 .house_wrapper {
   width: 75%;
@@ -130,11 +88,6 @@ export default {
   width: 100px;
   height: 100px;
   border-radius: 10px;
-}
-.image {
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
 }
 .wrapper_flex_item {
   display: flex;
@@ -157,11 +110,6 @@ export default {
   margin-top: 0.25em;
   color: var(--secondary-teritary-element-color);
 }
-.inline {
-  display: flex;
-  padding: 1em;
-  margin: 1em;
-}
 .flex_section {
   display: flex;
   margin-top: 0.75em;
@@ -178,6 +126,7 @@ h3 {
   text-decoration: none;
   text-transform: capitalize;
 }
+
 img {
   width: 15px;
   height: 15px;

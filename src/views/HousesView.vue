@@ -22,6 +22,10 @@
         <HouseSorting :houses="filteredData" />
       </div>
     </div>
+    <EmptyState v-if="filteredData.length === 0" />
+    <p v-else-if="this.searchValue" class="log_length">
+      {{ filteredData.length }} results found
+    </p>
     <div v-for="houses in filteredData" :key="houses.id">
       <HouseOverview :houses="houses" />
     </div>
@@ -33,6 +37,7 @@ import HeaderItem from "@/components/HeaderItem.vue";
 import HouseSorting from "@/components/pages/HouseSorting.vue";
 import HouseOverview from "@/components/pages/HouseOverview.vue";
 import { mapActions, mapGetters } from "vuex";
+import EmptyState from "../components/pages/EmptyState.vue";
 
 export default {
   name: "HomeView",
@@ -48,6 +53,7 @@ export default {
     HeaderItem,
     HouseSorting,
     HouseOverview,
+    EmptyState,
   },
   methods: {
     ...mapActions(["fetchHouses", "deleteListing"]),
@@ -67,17 +73,6 @@ export default {
           .includes(this.searchValue.toLowerCase());
       });
     },
-
-    // logLength() {
-    //   if (this.searchValue === "") {
-    //     return 0;
-    //   } else if (this.filteredData.length == 0) {
-    //     document.getElementById("show").style.display = "inline";
-    //     document.getElementById("result").style.display = "none";
-    //   } else {
-    //     return this.filteredData.length;
-    //   }
-    // },
   },
   created() {
     this.fetchHouses();
@@ -123,8 +118,11 @@ input {
   font-size: 14px;
   font-weight: lighter;
 }
-.hide {
-  display: none;
+.log_length {
+  padding: 0 9.5em;
+  font-family: var(--secondary-font);
+  font-size: 22px;
+  font-weight: bold;
 }
 @media (max-width: 840px) {
   .flex_wrapper {
@@ -138,6 +136,9 @@ input {
   form {
     width: 100%;
     padding: 1em 1em;
+  }
+  .log_length {
+    padding: 0 2em;
   }
 }
 @media (max-width: 500px) {

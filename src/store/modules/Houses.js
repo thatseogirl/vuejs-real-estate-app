@@ -23,25 +23,74 @@ const actions = {
   },
 
   async addNewListing({ commit }, formData) {
-    const response = await axios.post(process.env.VUE_APP_DTT_API, formData, {
-      headers: {
-        "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-      },
-    });
+    let image = formData.upload;
+    delete formData.upload;
 
-    // console.log(response)
+    const response = await axios
+      .post(process.env.VUE_APP_DTT_API, formData, {
+        headers: {
+          "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
+        },
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    await axios
+      .post(
+        process.env.VUE_APP_DTT_API + `/${response.data.id}/upload`,
+        image,
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+            "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+      });
+
     commit("newHouses", response.data);
+
+    return response.data.id;
   },
 
-  async uploadImage({ commit }, upload) {
-    console.log(upload);
-    const response = await axios.post(process.env.VUE_APP_DTT_API, upload, {
-      headers: {
-        "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-      },
-    });
-    console.log(response);
-    commit("newHouses", response.data);
+  async editListing({ commit }, currentHouse) {
+    await axios
+      .post(
+        process.env.VUE_APP_DTT_API + `/${currentHouse.id}`,
+        currentHouse.data,
+        {
+          headers: {
+            "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+      });
+
+    commit("updateListing", currentHouse.data);
+
+    if (currentHouse.image) {
+      await axios
+        .post(
+          process.env.VUE_APP_DTT_API + `/${currentHouse.id}/upload`,
+          currentHouse.image,
+          {
+            headers: {
+              "content-type": "multipart/form-data",
+              "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
+            },
+          }
+        )
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    return currentHouse.id;
   },
 
   async deleteListing({ commit }, id) {
@@ -60,9 +109,17 @@ const actions = {
 
 const mutations = {
   setHouses: (state, houses) => (state.houses = houses),
-  newHouses: (state, house) => state.houses.shift(house),
+  newHouses: (state, house) => state.houses.unshift(house),
   removeListing: (state, id) =>
     (state.houses = state.houses.filter((house) => house.id !== id)),
+  updateListing: (state, currentHouse) => {
+    const index = state.houses.findIndex(
+      (house) => house.id === currentHouse.id
+    );
+    if (index !== -1) {
+      state.houses.splice(index, 1, currentHouse);
+    }
+  },
 };
 
 export default {

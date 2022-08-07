@@ -91,7 +91,6 @@ a {
   }
   img {
     width: 23%;
-    /* height: 3vh; */
   }
   .about_text_1 {
     font-size: 1.75vh;

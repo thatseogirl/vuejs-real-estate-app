@@ -22,13 +22,11 @@ export default {
       console.log("click");
       const houses = this.houses;
       houses.sort((first, second) => first.price - second.price);
-      console.log(houses);
     },
     handleSize() {
       console.log("size");
       const houses = this.houses;
       houses.sort((first, second) => first.size - second.size);
-      console.log(houses);
     },
   },
   components: {
@@ -40,7 +38,7 @@ export default {
 <style scoped>
 .btn_price {
   background-color: var(--primary-element-color);
-  /* position: relative; */
+  position: relative;
   left: 20px;
   border-radius: 10px 0px 0px 10px;
 }

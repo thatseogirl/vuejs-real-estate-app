@@ -12,31 +12,17 @@
         <div>
           <div class="card_header">
             <h3>{{ getCurrentHouse.location.street }}</h3>
-            <section>
-              <div>
-                <!-- v-if="this.getCurrentHouse.madeByMe === true" -->
-                <div class="inline">
-                  <img
-                    @click="editHouse"
-                    :src="require('../assets/images/edit_red.png')"
-                    class="image"
-                  />
-                  <img
-                    :src="require('../assets/images/delete_black.png')"
-                    class="image"
-                    @click="toggleModal"
-                  />
-                </div>
-
-                <DeleteModal :modalActive="modalActive" />
-              </div>
-            </section>
+            <div v-if="getCurrentHouse.madeByMe === true">
+              <EditDeleteComponent :houseId="getCurrentHouse.id" />
+            </div>
           </div>
           <section class="card_flex_item">
             <img :src="require('../assets/images/location.png')" />
             <div>
               <span>{{ getCurrentHouse.location.zip }}</span>
-              <span>{{ getCurrentHouse.location.city }}</span>
+              <span style="margin-left: 0.25em">{{
+                getCurrentHouse.location.city
+              }}</span>
             </div>
           </section>
 
@@ -81,31 +67,22 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import ButtonItem from "@/components/ButtonItem.vue";
-import DeleteModal from "@/components/DeleteModal.vue";
-import { ref } from "vue";
+import EditDeleteComponent from "@/components/pages/EditDeleteComponent.vue";
 export default {
   name: "DetailsView",
   props: ["id"],
   components: {
-    DeleteModal,
-    // eslint-disable-next-line vue/no-unused-components
-    ButtonItem,
+    EditDeleteComponent,
   },
   methods: {
-    ...mapActions(["fetchHouses", "deleteListing"]),
+    ...mapActions(["fetchHouses"]),
     formatPrice(value) {
       let val = (value / 1).toFixed(3).replace(".", ".");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    //   deleteListing(){
-    //   console.log(this.getCurrentHouse.id)
-    //   return this.getCurrentHouse.id
-    // },
   },
   computed: {
     ...mapGetters(["allHouses"]),
-
     getCurrentHouse() {
       return this.allHouses
         .filter((item) => {
@@ -113,13 +90,6 @@ export default {
         })
         .shift();
     },
-  },
-  setup() {
-    const modalActive = ref(false);
-    const toggleModal = () => {
-      modalActive.value = !modalActive.value;
-    };
-    return { modalActive, toggleModal };
   },
   created() {
     this.fetchHouses();

@@ -1,41 +1,40 @@
 <template>
   <div class="new_listing_section">
     <div class="listing_container">
-      <router-link to="/" class="back_link">
-        <img :src="require('../assets/images/back.png')" class="back" />Back to
-        overview</router-link
+      <router-link
+        :to="{ name: 'details', params: { id: this.id } }"
+        class="back_link"
       >
-      <router-link to="/" class="back_link_mobile">
-        <img :src="require('../assets/images/back.png')" class="back" /> Create
-        new Listing</router-link
+        <img :src="require('../assets/images/back.png')" class="back" />Back to
+        detail page</router-link
+      >
+      <router-link
+        :to="{ name: 'details', params: { id: this.id } }"
+        class="back_link_mobile"
+      >
+        <img :src="require('../assets/images/back.png')" class="back" />Edit
+        Listing</router-link
       >
       <div class="form_section">
-        <h3>Create new listing</h3>
+        <h3>Edit Listing</h3>
         <form @submit.prevent="onSubmit">
           <div class="flex_items">
-            <label for="streetName">Street name*</label>
+            <label for="streetName">Street Name*</label>
             <input
               type="text"
-              v-model="formData.streetName"
+              v-model="currentHouse.data.streetName"
               name="streetName"
               placeholder="Enter the street name"
-              :class="{
-                'error-input': v$.formData.streetName.$invalid,
-              }"
             />
           </div>
-
           <section>
             <div class="flex_items">
               <label for="houseNumber">House Number*</label>
               <input
                 type="text"
-                v-model="formData.houseNumber"
+                v-model="currentHouse.data.houseNumber"
                 name="houseNumber"
                 placeholder="Enter house number"
-                :class="{
-                  'error-input': v$.formData.houseNumber.$invalid,
-                }"
               />
             </div>
 
@@ -43,36 +42,28 @@
               <label for="numberAddition">Addition (optional)</label>
               <input
                 type="text"
-                v-model="formData.numberAddition"
+                v-model="currentHouse.data.numberAddition"
                 name="numberAddition"
                 placeholder="e.g A"
               />
             </div>
           </section>
-
           <div class="flex_items">
             <label for="postalCode">Postal code*</label>
             <input
               type="text"
-              v-model="formData.zip"
+              v-model="currentHouse.data.zip"
               name="zip"
               placeholder="e.g 1000 AA"
-              :class="{
-                'error-input': v$.formData.zip.$invalid,
-              }"
             />
           </div>
-
           <div class="flex_items">
             <label for="city">City*</label>
             <input
               type="text"
-              v-model="formData.city"
+              v-model="currentHouse.data.city"
               name="city"
               placeholder="e.g Utrecht"
-              :class="{
-                'error-input': v$.formData.city.$invalid,
-              }"
             />
           </div>
 
@@ -81,12 +72,7 @@
             <div class="image-upload">
               <label for="file-input"
                 >Upload Image (PNG OR JPG)*
-                <div
-                  class="box image-upload"
-                  :class="{
-                    'error-input': v$.formData.upload.$invalid,
-                  }"
-                >
+                <div class="box image-upload">
                   <img
                     :src="require('../assets/images/upload.png')"
                     class="box_img"
@@ -97,7 +83,7 @@
               <input
                 id="file-input"
                 type="file"
-                name="upload"
+                name="image"
                 accept=" .png, .jpg, .jpeg"
                 @change="uploadImage"
               />
@@ -108,12 +94,9 @@
             <label for="price">Price*</label>
             <input
               type="number"
-              v-model.number="formData.price"
+              v-model.number="currentHouse.data.price"
               name="price"
               placeholder="e.g €150.000"
-              :class="{
-                'error-input': v$.formData.price.$invalid,
-              }"
             />
           </div>
 
@@ -122,12 +105,9 @@
               <label for="size">Size*</label>
               <input
                 type="text"
-                v-model.number="formData.size"
+                v-model="currentHouse.data.size"
                 name="size"
                 placeholder="e.g 60m2"
-                :class="{
-                  'error-input': v$.formData.size.$invalid,
-                }"
               />
             </div>
 
@@ -135,11 +115,8 @@
               <label for="garage">Garage*</label>
               <select
                 name="garage"
-                v-model="formData.hasGarage"
+                v-model="currentHouse.data.hasGarage"
                 id="select"
-                :class="{
-                  'error-input': v$.formData.hasGarage.$invalid,
-                }"
               >
                 <option disabled value="">Select</option>
                 <option value="yes">Yes</option>
@@ -153,12 +130,9 @@
               <label for="bedrooms">Bedrooms*</label>
               <input
                 type="text"
-                v-model.number="formData.bedrooms"
+                v-model="currentHouse.data.bedrooms"
                 name="bedrooms"
                 placeholder="Enter amount"
-                :class="{
-                  'error-input': v$.formData.bedrooms.$invalid,
-                }"
               />
             </div>
 
@@ -166,12 +140,9 @@
               <label for="bathrooms">Bathrooms*</label>
               <input
                 type="text"
-                v-model.number="formData.bathrooms"
+                v-model="currentHouse.data.bathrooms"
                 name="bathrooms"
                 placeholder="Enter amount"
-                :class="{
-                  'error-input': v$.formData.bathrooms.$invalid,
-                }"
               />
             </div>
           </section>
@@ -180,30 +151,22 @@
             <label for="constructionDate">Construction date*</label>
             <input
               type="text"
-              v-model="formData.constructionYear"
+              v-model="currentHouse.data.constructionYear"
               name="constructionYear"
               placeholder="e.g 1990"
-              :class="{
-                'error-input': v$.formData.constructionYear.$invalid,
-              }"
             />
           </div>
 
           <div class="flex_items">
             <label for="description">Description*</label>
             <textarea
-              v-model="formData.description"
+              v-model="currentHouse.data.description"
               placeholder="Enter description"
-              :class="{
-                'error-input': v$.formData.description.$invalid,
-              }"
             ></textarea>
           </div>
-          <p v-if="v$.formData.$invalid">Required field missing</p>
           <ButtonItem
-            :disabled="v$.formData.$invalid"
             type="submit"
-            text="Post"
+            text="Save"
             color="var(--primary-element-color)"
             class="button"
           />
@@ -215,71 +178,68 @@
 
 <script>
 import ButtonItem from "@/components/ButtonItem.vue";
-import useVuelidate from "@vuelidate/core";
-import { required, integer } from "@vuelidate/validators";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "CreateListing",
+  name: "EditListingView",
+  props: ["id"],
   components: {
     ButtonItem,
   },
   data() {
     return {
-      formData: {
-        streetName: "",
-        houseNumber: "",
-        numberAddition: "",
-        zip: "",
-        city: "",
-        price: "",
-        size: "",
-        hasGarage: false,
-        bedrooms: "",
-        bathrooms: "",
-        constructionYear: "",
-        description: "",
-        upload: "",
-      },
-    };
-  },
-  setup() {
-    return { v$: useVuelidate() };
-  },
-  validations() {
-    return {
-      formData: {
-        streetName: { required },
-        houseNumber: { required },
-        zip: { required },
-        upload: { required },
-        price: { required, integer },
-        city: { required },
-        size: { required, integer },
-        hasGarage: { required },
-        bedrooms: { required, integer },
-        bathrooms: { required, integer },
-        constructionYear: { required, integer },
-        description: { required },
-      },
+      upload: "",
     };
   },
   methods: {
-    ...mapActions(["addNewListing", "uploadImage"]),
-
+    ...mapActions(["fetchHouses", "uploadImage", "editListing"]),
     async onSubmit() {
-      if (!this.v$.formData.$invalid) {
-        let houseId = await this.addNewListing(this.formData);
-        this.$router.push({ path: "/details/" + `${houseId}` });
-        this.formData = "";
-      }
+      let houseId = await this.editListing(this.currentHouse);
+      console.log(houseId);
+      this.$router.push({ path: `/details/${houseId}` });
     },
 
     uploadImage(e) {
       let image = e.target.files[0];
       let imageFormData = new FormData();
       imageFormData.append("image", image);
-      this.formData.upload = imageFormData;
+      this.currentHouse.image = imageFormData;
     },
+  },
+  computed: {
+    ...mapGetters(["allHouses"]),
+    currentHouse() {
+      const data = {};
+      const current = this.allHouses
+        .filter((item) => {
+          console.log(this.id);
+          return item.id == this.id;
+        })
+        .shift();
+
+      const toSkip = ["id", "createdAt", "image", "madeByMe"];
+
+      Object.keys(current).forEach((entry) => {
+        if (entry === "rooms") {
+          data.bedrooms = current.rooms.bedrooms;
+          data.bathrooms = current.rooms.bathrooms;
+        } else if (entry === "location") {
+          data.city = current.location.city;
+          data.streetName = current.location.street;
+          data.zip = current.location.zip;
+        } else if (!toSkip.includes(entry)) {
+          data[entry] = current[entry];
+        }
+      });
+      data.houseNumber = "";
+      data.numberAddition = "";
+      return {
+        data: data,
+        id: this.id,
+      };
+    },
+  },
+  created() {
+    this.fetchHouses();
   },
 };
 </script>
@@ -323,6 +283,7 @@ h3 {
   width: 40%;
 }
 form {
+  font-family: var(--primary-font);
   margin-top: 2em;
 }
 .flex_items {
@@ -340,13 +301,12 @@ section {
 input,
 textarea,
 #select {
-  font-family: var(--secondary-font);
-  border: none;
+  border: var(--primary-element-color);
   background-color: var(--primary-background);
   padding: 1.5em;
   border-radius: 5px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
 }
 label {
   font-family: var(--secondary-font);

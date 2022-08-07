@@ -23,9 +23,10 @@ const routes = [
     props: true,
   },
   {
-    path: "/empty",
-    name: "empty",
-    component: () => import("@/views/EmptyView.vue"),
+    path: "/edit/:id",
+    name: "edit",
+    component: () => import("@/views/EditListingView.vue"),
+    props: true,
   },
 ];
 
