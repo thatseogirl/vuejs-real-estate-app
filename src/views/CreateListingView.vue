@@ -90,6 +90,8 @@
                   <img
                     :src="require('../assets/images/upload.png')"
                     class="box_img"
+                    id="file_upload"
+                    @change="uploadImage"
                   />
                 </div>
               </label>
@@ -275,7 +277,9 @@ export default {
     },
 
     uploadImage(e) {
-      let image = e.target.files[0];
+      let image = URL.createObjectURL(e.target.files[0]);
+      let preview = document.getElementById("file_upload");
+      preview.src = image;
       let imageFormData = new FormData();
       imageFormData.append("image", image);
       this.formData.upload = imageFormData;
@@ -367,7 +371,8 @@ textarea {
   margin-top: 10px;
 }
 .box_img {
-  width: 30px;
+  width: 50px;
+  height: 50px;
 }
 .button {
   text-transform: uppercase;

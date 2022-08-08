@@ -19,12 +19,10 @@ export default {
   },
   methods: {
     handlePrice() {
-      console.log("click");
       const houses = this.houses;
       houses.sort((first, second) => first.price - second.price);
     },
     handleSize() {
-      console.log("size");
       const houses = this.houses;
       houses.sort((first, second) => first.size - second.size);
     },

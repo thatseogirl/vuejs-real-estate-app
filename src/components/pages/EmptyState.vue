@@ -16,7 +16,6 @@ export default {
 
 <style scoped>
 div {
-  visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -48,6 +48,7 @@ export default {
   justify-content: center;
   background-color: var(--secondary-element-color);
   opacity: 0.8;
+  font-family: var(--secondary-font);
 }
 .modal {
   text-align: center;
@@ -68,5 +69,9 @@ export default {
   text-transform: uppercase;
   padding: 0.75em;
   margin-bottom: 0.5em;
+}
+h4 {
+  font-size: 22px;
+  font-weight: bold;
 }
 </style>

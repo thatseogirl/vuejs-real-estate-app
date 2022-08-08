@@ -23,7 +23,7 @@
       </div>
     </div>
     <EmptyState v-if="filteredData.length === 0" />
-    <p v-else-if="this.searchValue" class="log_length">
+    <p v-else-if="this.searchValue" class="flex_wrapper log_length">
       {{ filteredData.length }} results found
     </p>
     <div v-for="houses in filteredData" :key="houses.id">
@@ -119,7 +119,6 @@ input {
   font-weight: lighter;
 }
 .log_length {
-  padding: 0 9.5em;
   font-family: var(--secondary-font);
   font-size: 22px;
   font-weight: bold;
@@ -138,7 +137,7 @@ input {
     padding: 1em 1em;
   }
   .log_length {
-    padding: 0 2em;
+    font-size: 14px;
   }
 }
 @media (max-width: 500px) {
