@@ -26,4 +26,7 @@ yarn lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+API_KEY: "MgNu_h3Uv7EZwkbxz0oSacjPyW1Vq9C2"
+
+### Live demo
+   https://tobi-dtt-test.netlify.app/
