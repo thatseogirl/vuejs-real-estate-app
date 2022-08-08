@@ -194,15 +194,17 @@ export default {
     ...mapActions(["fetchHouses", "uploadImage", "editListing"]),
     async onSubmit() {
       let houseId = await this.editListing(this.currentHouse);
-      console.log(houseId);
       this.$router.push({ path: `/details/${houseId}` });
     },
 
     uploadImage(e) {
-      let image = e.target.files[0];
+      let preview_image = URL.createObjectURL(e.target.files[0]);
+      let preview = document.getElementById("file_upload");
+      preview.src = preview_image;
+
       let imageFormData = new FormData();
-      imageFormData.append("image", image);
-      this.currentHouse.image = imageFormData;
+      imageFormData.append("image", e.target.files[0]);
+      this.formData.upload = imageFormData;
     },
   },
   computed: {
@@ -211,7 +213,6 @@ export default {
       const data = {};
       const current = this.allHouses
         .filter((item) => {
-          console.log(this.id);
           return item.id == this.id;
         })
         .shift();

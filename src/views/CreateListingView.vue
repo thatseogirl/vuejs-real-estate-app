@@ -277,11 +277,12 @@ export default {
     },
 
     uploadImage(e) {
-      let image = URL.createObjectURL(e.target.files[0]);
+      let preview_image = URL.createObjectURL(e.target.files[0]);
       let preview = document.getElementById("file_upload");
-      preview.src = image;
+      preview.src = preview_image;
+
       let imageFormData = new FormData();
-      imageFormData.append("image", image);
+      imageFormData.append("image", e.target.files[0]);
       this.formData.upload = imageFormData;
     },
   },
