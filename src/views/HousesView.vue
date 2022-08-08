@@ -56,7 +56,7 @@ export default {
     EmptyState,
   },
   methods: {
-    ...mapActions(["fetchHouses", "deleteListing"]),
+    ...mapActions(["fetchHouses"]),
     clearSearch() {
       this.searchValue = "";
     },
