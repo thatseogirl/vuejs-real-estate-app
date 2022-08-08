@@ -15,18 +15,12 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
-```
-yarn test:unit
-```
-
 ### Lints and fixes files
 ```
 yarn lint
 ```
 
-### Customize configuration
-API_KEY: "MgNu_h3Uv7EZwkbxz0oSacjPyW1Vq9C2"
-
-### Live demo
-   https://tobi-dtt-test.netlify.app/
+### environment variables
+Use the following environment variables after creating a .env file. 
+VUE_APP_SECRET_KEY={YOUR_API_KEY}
+VUE_APP_DTT_API=https://api.intern.d-tt.nl/api/houses
