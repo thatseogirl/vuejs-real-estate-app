@@ -1,13 +1,13 @@
 :root {
   --primary-element-color: #eb5440;
   --secondary-element-color: #4a4b4c;
-  --first-teritary-element-color: #e8e8e8;
-  --secondary-teritary-element-color: #c3c3c3;
+  --first-tertiary-element-color: #e8e8e8;
+  --secondary-tertiary-element-color: #c3c3c3;
   --primary-text-color: #000;
   --secondary-text-color: #4a4b4c;
   --hyperlink-text-color: #067bc2;
   --primary-background: #fff;
   --secondary-background: #f6f6f6;
-  --primary_font: "Open Sans", sans-serif;
-  --secondary_font: "Montserrat", sans-serif;
+  --primary-font: "Open Sans", sans-serif;
+  --secondary-font: "Montserrat", sans-serif;
 }

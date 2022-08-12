@@ -105,7 +105,8 @@ export default {
   padding: 6em 2.5em;
 }
 .go-back-arrow {
-  width: 15px;
+  width: 20px;
+  height: 20px;
 }
 .overview_link {
   display: flex;
@@ -113,9 +114,7 @@ export default {
   text-decoration: none;
   color: var(--primary-text-color);
   margin-bottom: 2em;
-  font-family: var(--secondary-font);
-  font-size: 16px;
-  font-weight: 600;
+  font: 600 16px var(--secondary-font);
 }
 .card {
   width: 55%;
@@ -132,7 +131,7 @@ export default {
   justify-content: space-between;
 }
 h3 {
-  font: bold 22px "Montserrat", sans-serif;
+  font: bold 22px var(--secondary-font);
   text-transform: capitalize;
   margin-bottom: 0.3em;
   color: var(--primary-text-color);
@@ -144,7 +143,7 @@ h3 {
 }
 .card_flex_item {
   display: flex;
-  font: 400 14px "Open Sans", sans-serif;
+  font: 400 14px var(--primary-font);
   margin-top: 0.75em;
   color: var(--secondary-element-color);
 }
@@ -153,7 +152,7 @@ h3 {
 }
 .card_description {
   margin: 1em 0 1em;
-  font: 400 14px "Open Sans", sans-serif;
+  font: 400 14px var(--primary-font);
   color: var(--secondary-element-color);
 }
 @media (max-width: 996px) {

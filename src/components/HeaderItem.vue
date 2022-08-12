@@ -40,9 +40,7 @@ header {
   padding: 7em 1.25em 0em;
 }
 h3 {
-  font-size: 32px;
-  font-weight: bold;
-  font-family: var(--secondary-font);
+  font: bold 32px var(--secondary-font);
 }
 .mobile_listing {
   display: none;

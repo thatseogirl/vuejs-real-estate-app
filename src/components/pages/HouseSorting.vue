@@ -1,9 +1,12 @@
 <template>
   <div class="sorting">
-    <ButtonItem class="btn_price" text="Price" @click="handlePrice" />
     <ButtonItem
-      class="btn_size"
-      style="background-color: var(--secondary-teritary-element-color)"
+      :class="sortPrice ? 'active' : 'btn_price'"
+      text="Price"
+      @click="handlePrice"
+    />
+    <ButtonItem
+      :class="sortSize ? 'active' : 'btn_size'"
       text="Size"
       @click="handleSize"
     />
@@ -17,14 +20,24 @@ export default {
   props: {
     houses: Object,
   },
+  data() {
+    return {
+      sortSize: false,
+      sortPrice: false,
+    };
+  },
   methods: {
     handlePrice() {
       const houses = this.houses;
       houses.sort((first, second) => first.price - second.price);
+      this.sortSize = false;
+      this.sortPrice = true;
     },
     handleSize() {
       const houses = this.houses;
       houses.sort((first, second) => first.size - second.size);
+      this.sortSize = true;
+      this.sortPrice = false;
     },
   },
   components: {
@@ -34,11 +47,17 @@ export default {
 </script>
 
 <style scoped>
-.btn_price {
+.active {
   background-color: var(--primary-element-color);
+}
+.btn_price {
+  background-color: var(--secondary-tertiary-element-color);
   position: relative;
   left: 20px;
   border-radius: 10px 0px 0px 10px;
+}
+.btn_size {
+  background-color: var(--secondary-tertiary-element-color);
 }
 .sorting {
   display: flex;

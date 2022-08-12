@@ -47,12 +47,13 @@ export default {
   display: flex;
   justify-content: center;
   background-color: var(--secondary-element-color);
-  opacity: 0.8;
+  opacity: 0.96;
   font-family: var(--secondary-font);
 }
 .modal {
   text-align: center;
   background-color: var(--primary-background);
+  position: absolute;
   height: 300px;
   width: 500px;
   margin-top: 15%;
@@ -71,7 +72,6 @@ export default {
   margin-bottom: 0.5em;
 }
 h4 {
-  font-size: 22px;
-  font-weight: bold;
+  font: bold 22px var(--secondary-font);
 }
 </style>

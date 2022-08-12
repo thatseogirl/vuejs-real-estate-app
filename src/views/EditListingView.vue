@@ -256,12 +256,9 @@ export default {
   max-width: 100%;
   margin: auto;
   padding: 7em 2.5em;
-  overflow: scroll;
 }
 h3 {
-  font-family: var(--secondary-font);
-  font-size: 22px;
-  font-weight: bold;
+  font: 22px bold var(--secondary-font);
 }
 .back {
   width: 20px;
@@ -269,9 +266,7 @@ h3 {
 }
 .back_link {
   color: var(--primary-text-color);
-  font-family: var(--secondary-font);
-  font-size: 16px;
-  font-weight: 400;
+  font: 400 16px var(--secondary-font);
   text-decoration: none;
   display: flex;
   gap: 10px;
@@ -306,13 +301,10 @@ textarea,
   background-color: var(--primary-background);
   padding: 1.5em;
   border-radius: 5px;
-  font-size: 14px;
-  font-weight: 400;
+  font: 400 14px var(--primary-font);
 }
 label {
-  font-family: var(--secondary-font);
-  font-size: 14px;
-  font-weight: 600;
+  font: 600 14px var(--secondary-font);
 }
 textarea {
   padding-bottom: 6em;
@@ -344,9 +336,7 @@ textarea {
 }
 p {
   color: var(--primary-element-color);
-  font-family: var(--secondary-font);
-  font-style: italic;
-  font-size: 14px;
+  font: italic 14px var(--secondary-font);
 }
 .image-upload > input {
   display: none;
@@ -367,9 +357,7 @@ p {
   }
   .back_link_mobile {
     color: var(--primary-text-color);
-    font-family: var(--secondary-font);
-    font-size: 22px;
-    font-weight: bold;
+    font: bold 22px var(--secondary-font);
     text-decoration: none;
     display: flex;
     gap: 30px;

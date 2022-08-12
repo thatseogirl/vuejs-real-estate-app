@@ -22,16 +22,13 @@ export default {
 <style scoped>
 .btn {
   display: inline;
-  background: #000;
   color: #fff;
   border: none;
   padding: 1em 4em;
   margin: 5px;
   border-radius: 10px;
   cursor: pointer;
-  font-family: var(--secondary_font);
-  font-size: 18px;
-  font-weight: bold;
+  font: bold 18px var(--secondary-font);
 }
 .btn:active {
   transform: scale(0.98);

@@ -29,6 +29,7 @@ footer {
 }
 .navbar {
   overflow: hidden;
+  margin-top: 300px;
   background-color: var(--primary-background);
   position: fixed;
   bottom: 0;
@@ -37,12 +38,14 @@ footer {
 ul {
   display: flex;
   justify-content: space-around;
+  padding: 0.5em;
 }
 li {
   list-style: none;
 }
 img {
-  width: 50px;
+  width: 35px;
+  height: 35px;
 }
 ul .nav_active_link img {
   background-color: var(--primary-element-color);

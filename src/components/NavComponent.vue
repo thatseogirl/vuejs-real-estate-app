@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav>
-      <img :src="require('../assets/images/logo.png')" />
+      <router-link to="/" class="nav_link">
+        <img :src="require('../assets/images/logo.png')" />
+      </router-link>
       <ul>
         <li>
           <router-link to="/" class="nav_link">Houses</router-link>
@@ -38,24 +40,22 @@ nav {
   margin: auto;
 }
 
-ul .nav_active_link {
-  color: var(--primary-text-color);
-  font-weight: bold;
-  font-size: 18px;
-}
-
 ul {
   display: flex;
   gap: 3rem;
   margin-top: 0.5em;
-  font-family: var(--secondary_font);
+  font-family: var(--secondary-font);
 }
+
+ul .nav_active_link {
+  color: var(--primary-text-color);
+  font: bold 18px var(--secondary-font);
+}
+
 .nav_link {
-  font-family: var(--secondary_font);
-  font-weight: medium;
-  font-size: 18px;
+  font: 500 18px var(--secondary-font);
   text-decoration: none;
-  color: var(--secondary-teritary-element-color);
+  color: var(--secondary-tertiary-element-color);
 }
 
 li {

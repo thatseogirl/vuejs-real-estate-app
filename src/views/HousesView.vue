@@ -97,9 +97,10 @@ main {
   margin-bottom: 2em;
 }
 form {
+  cursor: pointer;
   display: flex;
   gap: 20px;
-  background-color: var(--first-teritary-element-color);
+  background-color: var(--first-tertiary-element-color);
   border-radius: 10px;
   width: 40%;
   align-items: center;
@@ -114,14 +115,10 @@ input {
   outline: 0;
   border: 0;
   background-color: transparent;
-  font-family: var(--primary-font);
-  font-size: 14px;
-  font-weight: lighter;
+  font: 300 14px var(--primary-font);
 }
 .log_length {
-  font-family: var(--secondary-font);
-  font-size: 22px;
-  font-weight: bold;
+  font: bold 22px var(--secondary-font);
 }
 @media (max-width: 840px) {
   .flex_wrapper {

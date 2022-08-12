@@ -47,11 +47,11 @@ main {
   margin: auto;
 }
 h1 {
-  font: bold 1.5em var(--secondary_font);
+  font: bold 1.5em var(--secondary-font);
   margin-top: 1em;
 }
 .about_text_1 {
-  font: bold 2.5vh var(--primary_font);
+  font: 400 2.5vh var(--primary-font);
   word-spacing: 0.15em;
   line-height: 1.9;
   margin-top: 3em;
@@ -62,12 +62,12 @@ h1 {
   margin-top: 1em;
 }
 .about_text_2 {
-  font: bold 1.3em var(--secondary_font);
+  font: bold 1.3em var(--secondary-font);
   margin-top: 5em;
 }
 img {
   width: 10vw;
-  height: 6vh;
+  /* height: 6vh; */
 }
 .header {
   display: none;
@@ -79,12 +79,17 @@ a {
 .dtt_link {
   font-size: 1em;
 }
+@media (max-width: 996px) {
+  main {
+    padding: 8em 2.5em;
+  }
+}
 @media (max-width: 840px) {
   .header {
     display: flex;
     justify-content: center;
     align-items: center;
-    font: bold 2em var(--secondary_font);
+    font: bold 2em var(--secondary-font);
   }
   main {
     padding: 4em 0 0;

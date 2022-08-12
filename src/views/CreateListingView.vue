@@ -76,7 +76,6 @@
             />
           </div>
 
-          <!-- image -->
           <div class="flex_items">
             <div class="image-upload">
               <label for="file-input"
@@ -300,12 +299,9 @@ export default {
   max-width: 100%;
   margin: auto;
   padding: 7em 2.5em;
-  overflow: scroll;
 }
 h3 {
-  font-family: var(--secondary-font);
-  font-size: 22px;
-  font-weight: bold;
+  font: bold 22px var(--secondary-font);
 }
 .back {
   width: 20px;
@@ -313,9 +309,7 @@ h3 {
 }
 .back_link {
   color: var(--primary-text-color);
-  font-family: var(--secondary-font);
-  font-size: 16px;
-  font-weight: 400;
+  font: 400 16px var(--secondary-font);
   text-decoration: none;
   display: flex;
   gap: 10px;
@@ -341,22 +335,17 @@ section {
   grid-template-columns: auto auto;
   gap: 1.5em;
 }
-
 input,
 textarea,
 #select {
-  font-family: var(--secondary-font);
+  font: 600 14px var(--secondary-font);
   border: none;
   background-color: var(--primary-background);
   padding: 1.5em;
   border-radius: 5px;
-  font-size: 14px;
-  font-weight: 600;
 }
 label {
-  font-family: var(--secondary-font);
-  font-size: 14px;
-  font-weight: 600;
+  font: 600 14px var(--secondary-font);
 }
 textarea {
   padding-bottom: 6em;
@@ -372,6 +361,7 @@ textarea {
   margin-top: 10px;
 }
 .box_img {
+  cursor: pointer;
   width: 50px;
   height: 50px;
 }
@@ -389,9 +379,7 @@ textarea {
 }
 p {
   color: var(--primary-element-color);
-  font-family: var(--secondary-font);
-  font-style: italic;
-  font-size: 14px;
+  font: italic 14px var(--secondary-font);
 }
 .image-upload > input {
   display: none;
@@ -403,7 +391,10 @@ p {
 }
 @media (max-width: 996px) {
   .form_section {
-    width: 70%;
+    width: 80%;
+  }
+  .listing_container {
+    padding: 8.5em 2.5em;
   }
 }
 @media (max-width: 840px) {
@@ -412,9 +403,7 @@ p {
   }
   .back_link_mobile {
     color: var(--primary-text-color);
-    font-family: var(--secondary-font);
-    font-size: 22px;
-    font-weight: bold;
+    font: bold 22px var(--secondary-font);
     text-decoration: none;
     display: flex;
     gap: 30px;
@@ -444,7 +433,7 @@ p {
   }
   .listing_container {
     width: 90%;
-    min-height: 1360px;
+    min-height: 1400px;
     padding: 1em;
   }
 }
@@ -461,7 +450,7 @@ p {
     gap: 0;
   }
   .listing_container {
-    min-height: 1650px;
+    min-height: 1700px;
   }
 }
 </style>

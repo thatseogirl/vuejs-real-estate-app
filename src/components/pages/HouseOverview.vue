@@ -3,7 +3,12 @@
     <section class="house_wrapper">
       <div class="wrapper_flex_item">
         <div>
-          <img :src="houses.image" class="house" />
+          <router-link
+            class="details_link"
+            :to="{ name: 'details', params: { id: houses.id } }"
+          >
+            <img :src="houses.image" class="house" />
+          </router-link>
         </div>
         <div>
           <h3>
@@ -77,7 +82,6 @@ export default {
 .house_wrapper {
   width: 75%;
   max-width: 100%;
-  height: 130px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -85,8 +89,10 @@ export default {
   border-radius: 10px;
 }
 .house {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: bottom;
   border-radius: 10px;
 }
 .wrapper_flex_item {
@@ -96,40 +102,41 @@ export default {
 }
 .price_tag {
   display: flex;
-  margin-top: 0.25em;
+  gap: 0.35em;
+  margin-top: 0.5em;
+}
+
+.price_tag img {
+  width: 25px;
+  height: 25px;
 }
 .price_tag p {
-  font-family: var(--primary-font);
-  font-size: 12px;
-  font-weight: 400;
+  font: 600 16px var(--primary-font);
   color: var(--secondary-element-color);
 }
 .location {
-  font-size: 14px;
-  font-family: var(--primary-font);
-  margin-top: 0.25em;
-  color: var(--secondary-teritary-element-color);
+  font: 400 16px var(--primary-font);
+  margin-top: 0.5em;
+  color: var(--secondary-tertiary-element-color);
 }
 .flex_section {
   display: flex;
-  margin-top: 0.75em;
-  gap: 0.5em;
+  margin-top: 0.9em;
+  gap: 0.75em;
 }
 h3 {
   margin-top: 0.25em;
 }
 .details_link {
-  font-family: var(--secondary-font);
-  font-size: 18px;
-  font-weight: bold;
+  font: bold 18px var(--secondary-font);
   color: var(--primary-text-color);
   text-decoration: none;
   text-transform: capitalize;
 }
 
-img {
-  width: 15px;
-  height: 15px;
+.flex_section img {
+  width: 18px;
+  height: 18px;
 }
 aside {
   display: flex;
