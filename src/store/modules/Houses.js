@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosClient, axiosMultiPartClient } from "@/axiosRequest/ApiClient";
 
 const state = {
   houses: [],
@@ -10,43 +10,25 @@ const getters = {
 
 const actions = {
   async fetchHouses({ commit }) {
-    const response = await axios
-      .get(process.env.VUE_APP_DTT_API, {
-        headers: {
-          "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-        },
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await axiosClient.get("/houses").catch((error) => {
+      console.log(error);
+    });
     commit("setHouses", response.data);
   },
 
   async addNewListing({ commit }, formData) {
+    console.log(formData);
     let image = formData.upload;
     delete formData.upload;
 
-    const response = await axios
-      .post(process.env.VUE_APP_DTT_API, formData, {
-        headers: {
-          "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-        },
-      })
+    const response = await axiosClient
+      .post("/houses", formData)
       .catch((error) => {
         console.log(error);
       });
 
-    await axios
-      .post(
-        process.env.VUE_APP_DTT_API + `/${response.data.id}/upload`,
-        image,
-        {
-          headers: {
-            "content-type": "multipart/form-data",
-            "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-          },
-        }
-      )
+    await axiosMultiPartClient
+      .post(`/houses/${response.data.id}/upload`, image)
       .catch((error) => {
         console.log(error);
       });
@@ -57,16 +39,8 @@ const actions = {
   },
 
   async editListing({ commit }, currentHouse) {
-    await axios
-      .post(
-        process.env.VUE_APP_DTT_API + `/${currentHouse.id}`,
-        currentHouse.data,
-        {
-          headers: {
-            "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-          },
-        }
-      )
+    await axiosClient
+      .post(`/houses/${currentHouse.id}`, currentHouse.data)
       .catch((error) => {
         console.log(error);
       });
@@ -74,17 +48,8 @@ const actions = {
     commit("updateListing", currentHouse.data);
 
     if (currentHouse.image) {
-      await axios
-        .post(
-          process.env.VUE_APP_DTT_API + `/${currentHouse.id}/upload`,
-          currentHouse.image,
-          {
-            headers: {
-              "content-type": "multipart/form-data",
-              "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-            },
-          }
-        )
+      await axiosMultiPartClient
+        .post(`/houses/${currentHouse.id}/upload`, currentHouse.image)
         .catch((error) => {
           console.log(error);
         });
@@ -94,15 +59,9 @@ const actions = {
   },
 
   async deleteListing({ commit }, id) {
-    await axios
-      .delete(process.env.VUE_APP_DTT_API + `/${id}`, {
-        headers: {
-          "X-Api-Key": process.env.VUE_APP_SECRET_KEY,
-        },
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    await axiosClient.delete(`/houses/${id}`).catch((error) => {
+      console.log(error);
+    });
     commit("removeListing", id);
   },
 };
