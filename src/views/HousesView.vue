@@ -68,9 +68,14 @@ export default {
         return this.allHouses;
       }
       return this.allHouses.filter((item) => {
-        return item.location.city
-          .toLowerCase()
-          .includes(this.searchValue.toLowerCase());
+        return (
+          item.location.city
+            .toLowerCase()
+            .includes(this.searchValue.toLowerCase()) ||
+          item.location.street
+            .toLowerCase()
+            .includes(this.searchValue.toLowerCase())
+        );
       });
     },
   },

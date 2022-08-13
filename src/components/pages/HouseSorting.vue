@@ -1,12 +1,12 @@
 <template>
   <div class="sorting">
     <ButtonItem
-      :class="sortPrice ? 'active' : 'btn_price'"
+      :class="sortPrice ? 'active_price' : 'btn_price'"
       text="Price"
       @click="handlePrice"
     />
     <ButtonItem
-      :class="sortSize ? 'active' : 'btn_size'"
+      :class="sortSize ? 'active_size' : 'btn_size'"
       text="Size"
       @click="handleSize"
     />
@@ -47,7 +47,13 @@ export default {
 </script>
 
 <style scoped>
-.active {
+.active_price {
+  background-color: var(--primary-element-color);
+  position: relative;
+  left: 20px;
+  border-radius: 10px 0px 0px 10px;
+}
+.active_size {
   background-color: var(--primary-element-color);
 }
 .btn_price {

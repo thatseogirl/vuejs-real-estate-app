@@ -25,7 +25,7 @@
               alt="price"
               class="currency"
             />
-            <p>{{ formatPrice(houses.price) }}</p>
+            <p>{{ formatPrice }}</p>
           </div>
           <p class="location">
             {{ houses.location.zip }} {{ houses.location.city }}
@@ -66,9 +66,11 @@ export default {
   },
   methods: {
     ...mapActions(["deleteListing"]),
-    formatPrice(value) {
-      let val = (value / 1).toFixed(3).replace(".", ".");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  },
+  computed: {
+    formatPrice() {
+      const formatter = new Intl.NumberFormat();
+      return formatter.format(this.houses.price);
     },
   },
 };

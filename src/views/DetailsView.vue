@@ -29,7 +29,7 @@
           <section class="card_flex_item gap_class">
             <div>
               <img :src="require('../assets/images/price.png')" />
-              <span>{{ formatPrice(getCurrentHouse.price) }}</span>
+              <span>{{ formatPrice }}</span>
             </div>
             <div>
               <img :src="require('../assets/images/size.png')" />
@@ -76,13 +76,13 @@ export default {
   },
   methods: {
     ...mapActions(["fetchHouses"]),
-    formatPrice(value) {
-      let val = (value / 1).toFixed(3).replace(".", ".");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
   },
   computed: {
     ...mapGetters(["allHouses"]),
+    formatPrice() {
+      const formatter = new Intl.NumberFormat();
+      return formatter.format(this.getCurrentHouse.price);
+    },
     getCurrentHouse() {
       return this.allHouses
         .filter((item) => {
