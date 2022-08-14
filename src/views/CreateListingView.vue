@@ -1,5 +1,5 @@
 <template>
-  <FormComponent :house="form" :isCreate="true" :id="id" />
+  <FormComponent :house="formData" :isCreate="true" :id="id" />
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      form: {
+      formData: {
         streetName: "",
         houseNumber: "",
         numberAddition: "",

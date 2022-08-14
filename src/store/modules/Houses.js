@@ -17,7 +17,6 @@ const actions = {
   },
 
   async addNewListing({ commit }, formData) {
-    console.log(formData);
     let image = formData.upload;
     delete formData.upload;
 
@@ -45,8 +44,6 @@ const actions = {
         console.log(error);
       });
 
-    commit("updateListing", currentHouse.data);
-
     if (currentHouse.image) {
       await axiosMultiPartClient
         .post(`/houses/${currentHouse.id}/upload`, currentHouse.image)
@@ -54,7 +51,7 @@ const actions = {
           console.log(error);
         });
     }
-
+    commit("updateListing", currentHouse.data);
     return currentHouse.id;
   },
 

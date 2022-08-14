@@ -80,7 +80,8 @@
             />
           </div>
 
-          <div class="flex_items">
+          <!-- createListing image -->
+          <div class="flex_items" v-if="isCreate">
             <div class="image-upload">
               <label for="file-input"
                 >Upload Image (PNG OR JPG)*
@@ -93,6 +94,39 @@
                   <img
                     :src="require('../../assets/images/upload.png')"
                     class="box_img"
+                    name="upload"
+                    id="file_upload"
+                    @change="uploadImage"
+                  />
+                </div>
+              </label>
+
+              <input
+                @blur="v$.formData.image.$touch"
+                id="file-input"
+                type="file"
+                name="upload"
+                accept=" .png, .jpg, .jpeg"
+                @change="uploadImage"
+              />
+            </div>
+          </div>
+
+          <!-- editListing image -->
+          <div class="flex_items" v-if="!isCreate">
+            <div class="image-upload">
+              <label for="file-input"
+                >Upload Image (PNG OR JPG)*
+                <div
+                  class="box image-upload"
+                  :class="{
+                    'error-input': v$.formData.upload.$error,
+                  }"
+                >
+                  <img
+                    :src="this.previewImage"
+                    class="box_img"
+                    name="upload"
                     id="file_upload"
                     @change="uploadImage"
                   />
@@ -138,10 +172,10 @@
                 }"
               />
             </div>
-
-            <div class="flex_items">
+            <div class="flex_items" v-if="isCreate">
               <label for="garage">Garage*</label>
               <select
+                style="cursor: pointer"
                 @blur="v$.formData.hasGarage.$touch"
                 name="garage"
                 v-model="formData.hasGarage"
@@ -150,9 +184,27 @@
                   'error-input': v$.formData.hasGarage.$error,
                 }"
               >
-                <option disabled value="">Select</option>
+                <option value="" disabled>Select</option>
                 <option value="yes">Yes</option>
-                <option value="No">No</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+
+            <div class="flex_items" v-else-if="!isCreate">
+              <label for="garage">Garage*</label>
+              <select
+                style="cursor: pointer"
+                @blur="v$.formData.hasGarage.$touch"
+                name="garage"
+                v-model="formData.hasGarage"
+                id="select"
+                :class="{
+                  'error-input': v$.formData.hasGarage.$error,
+                }"
+              >
+                <option value="" disabled>Select</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
               </select>
             </div>
           </section>
@@ -244,6 +296,7 @@ export default {
   data() {
     return {
       formData: this.house,
+      previewImage: this.isCreate ? "" : this.house.image,
     };
   },
   computed: {
@@ -260,7 +313,7 @@ export default {
         streetName: { required },
         houseNumber: { required },
         zip: { required },
-        upload: { required },
+        upload: this.isCreate ? { required } : "",
         price: { required, integer },
         city: { required },
         size: { required, integer },
@@ -301,10 +354,12 @@ export default {
       let preview_image = URL.createObjectURL(e.target.files[0]);
       let preview = document.getElementById("file_upload");
       preview.src = preview_image;
+      this.previewImage = preview.src;
 
       let imageFormData = new FormData();
       imageFormData.append("image", e.target.files[0]);
       this.formData.upload = imageFormData;
+      console.log(this.formData.hasGarage);
     },
   },
 };
