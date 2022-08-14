@@ -172,6 +172,7 @@
                 }"
               />
             </div>
+            <!-- createListing houseGarage -->
             <div class="flex_items" v-if="isCreate">
               <label for="garage">Garage*</label>
               <select
@@ -189,7 +190,7 @@
                 <option value="no">No</option>
               </select>
             </div>
-
+            <!-- editListing houseGarage -->
             <div class="flex_items" v-else-if="!isCreate">
               <label for="garage">Garage*</label>
               <select
