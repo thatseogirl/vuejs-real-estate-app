@@ -38,15 +38,18 @@ const actions = {
   },
 
   async editListing({ commit }, currentHouse) {
+    let image = currentHouse.data.upload;
+    delete currentHouse.data.upload;
+
     await axiosClient
       .post(`/houses/${currentHouse.id}`, currentHouse.data)
       .catch((error) => {
         console.log(error);
       });
 
-    if (currentHouse.image) {
+    if (image) {
       await axiosMultiPartClient
-        .post(`/houses/${currentHouse.id}/upload`, currentHouse.image)
+        .post(`/houses/${currentHouse.id}/upload`, image)
         .catch((error) => {
           console.log(error);
         });

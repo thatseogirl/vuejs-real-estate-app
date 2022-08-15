@@ -360,7 +360,6 @@ export default {
       let imageFormData = new FormData();
       imageFormData.append("image", e.target.files[0]);
       this.formData.upload = imageFormData;
-      console.log(this.formData.hasGarage);
     },
   },
 };
